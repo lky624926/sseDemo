@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>��÷���������</h1>
+<div id="result"></div>
+
+<script>
+if(typeof(EventSource)!=="undefined")
+  {
+  var source=new EventSource("http://localhost:8080/sse?userId=123");
+  source.onmessage=function(event)
+    {
+    document.getElementById("result").innerHTML+=event.data + "<br />";
+    };
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support server-sent events...";
+  }
+// 另一种写法
+source.addEventListener('data', function (event) {
+    document.getElementById("p1").innerHTML=event.data;
+    // handle message
+}, false);
+</script>
+<div id = "p1">123</div>
+</body>
+</html>
